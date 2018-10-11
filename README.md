@@ -2,7 +2,8 @@
 Simple airport board application with API
 default layout. Kept it really simple
 
-login :user1 : 
+login : user1 
+
 password: secretpass123
 
 #### Deploy ### 
