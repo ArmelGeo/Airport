@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% load staticfiles %}
+ 
+{% block content %}
+ 
+ <h1>Flight delete form View</h1>  
+ <form method="post">  
+    {% csrf_token %}  
+     Are you sure you want to delete "{{ instance }}" ?  
+     <input type="submit" value="Delete" />  
+ </form> 
+
+ {% endblock content %}

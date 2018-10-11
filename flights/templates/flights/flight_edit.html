@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1> Flight №-{{obj.flight_no}}</h1> <br>
+
+    {{obj.depart_city}}<br>
+    {{obj.destination_city}}<br>
+    {{obj.date}}<br>
+    {{obj.date_time}}<br>
+    {{obj.status}}<br>
+
+<p><a href="{% url 'flights:flight_list'%}"> Flights</a>
+{% endblock content %}

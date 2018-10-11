@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load staticfiles %}
+ 
+{% block content %}
+
+<h1>Flight edit form  </h1>  <br>
+ <form method="POST" action=''>
+     {% csrf_token %}  
+     {{ form.as_p }}  <br>
+     <input type="submit" value="Save" />  
+     <form method="POST" action="{% url 'flights:flight_delete' instance.id %}">
+        <input type="button" value="Delete" />
+    </form>
+ </form> 
+
+<p><a href="{% url 'flights:flight_list'%}"> Flights</a>
+{% endblock content %}

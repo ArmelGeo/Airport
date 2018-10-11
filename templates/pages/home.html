@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'airport/css/styles.css' %}">
+{% endblock%}
+
+
+{% block content%}
+    <h1> Welcome to the flights status website</h1> <br>
+    
+    <p>See all available flights <a href="{% url 'flights:flight_list' %}"> here</a></p>
+{% endblock content%}
+

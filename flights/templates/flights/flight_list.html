@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load staticfiles %}
+
+
+{% block content%}
+    <h1 class="text-center"> All availables Flights ({{object_list.count}})</h1> <br/>
+   
+   <form method="GET" action =''>
+      <input type='text' name= "flights" placeholder="Search flight" value ='{{ request.GET.flights }}'/>
+      <input type="submit" value="Search" />
+   </form>
+<br>
+ <ul>  
+     
+     <table class="table-form">
+            <tr> 
+                <th>Flight no. </th> 
+                <th> Departure</th>
+                <th> Destination</th>
+                <th> Date </th>
+                <th> Time </th>
+                <th> Flight status </th>
+            </tr> 
+            {% for flight in object_list %}
+            <tr>
+                  
+                <td> <a href="{% url 'flights:edit' flight.id %}"> {{flight.flight_no }} </a></td>
+                <td>{{flight.depart_city}} </td>
+                <td>{{flight.destination_city}} </td>
+                <td>{{flight.date }} </td>
+                <td>{{flight.date_time | time:"H:i"}} </td>
+                <td>{{flight.status}} </td>
+                
+            </tr>
+            {% endfor %}
+    </table>  
+
+    
+ </ul>  
+   
+<br>
+<a id=test href="{% url 'flights:flight_new'%}">Add new flight</a>
+
+{% block javascripts %} {% endblock javascripts %}
+
+{% endblock content%}
