@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from .models import Flight
 from .forms import FlightForm
 from django.db.models import Q
@@ -24,6 +24,8 @@ def flights_details(request, id=None):
     return render(request, 'flights/flight_detail.html', {'obj': instance })
 
 def flight_new(request):
+    if not request.user.is__staff or not request.user.is__superuser:
+        raise Http404
     form = FlightForm(request.POST or None)
     if form.is_valid():
         instance = form.save(commit=False)
@@ -34,6 +36,8 @@ def flight_new(request):
 
 
 def flight_update(request, id=None):
+    if not request.user.is__staff or not request.user.is__superuser:
+        raise Http404
     instance = get_object_or_404(Flight, id=id)
     form = FlightForm(request.POST or None, instance=instance)
     if form.is_valid():
@@ -48,6 +52,8 @@ def flight_update(request, id=None):
 
 
 def flight_delete(request, id=None):
+    if not request.user.is__staff or not request.user.is__superuser:
+        raise Http404
     instance = get_object_or_404(Flight, id=id)
     form = FlightForm(request.POST or None, instance=instance)
     if form.is_valid():
@@ -58,27 +64,3 @@ def flight_delete(request, id=None):
         'form': form,
     }
     return render(request, "flights/flight_form.html", context)
-
-
-"""
-class FlightList(ListView):  
-     model = Flight  
-   
-   
-class FlightCreate(CreateView):  
-    model = Flight  
-    fields = ['fligth_no', 'depart_city', 'destination_city', 'date', 'date_time', 'status']
-    success_url = reverse_lazy('flights: flight_list')  
-   
-   
-class FlightUpdate(UpdateView):  
-    model = Flight   
-    fields = ['fligth_no', 'depart_city', 'destination_city', 'date', 'date_time', 'status']
-    success_url = reverse_lazy('flights: flight_list')  
-   
-   
-class FlightDelete(DeleteView):  
-    model = Flight    
-    success_url = reverse_lazy('flights: flight_list') 
-"""
-
