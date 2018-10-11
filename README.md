@@ -7,4 +7,4 @@ Simple airport board application with API
 ### API Documentation 
 **Не знаю как все это описать
 
-(http://127.0.0.1:8000/api/flights/ only get request)
+(<server>/api/flights/ only get request)
