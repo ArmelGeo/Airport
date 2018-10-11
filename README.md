@@ -1,6 +1,9 @@
 # Airport
 Simple airport board application with API
 
+login :user1 : 
+password: secretpass123
+
 #### Deploy ### 
 Для тестирования можно использовать heroku (если просто локально с учетом requirements.txt)
 
